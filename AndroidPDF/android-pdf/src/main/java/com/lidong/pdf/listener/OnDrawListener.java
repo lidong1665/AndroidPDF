@@ -29,7 +29,6 @@ public interface OnDrawListener {
     /**
      * This method is called when the PDFView is
      * drawing its view.
-     * <p/>
      * The page is starting at (0,0)
      * @param canvas        The canvas on which to draw things.
      * @param pageWidth     The width of the current page.

@@ -59,26 +59,6 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 import static com.lidong.pdf.util.Constants.Cache.CACHE_SIZE;
 
 
-/**
- * @author Joan Zapata
- *         <p/>
- *         It supports animations, zoom, cache, and swipe.
- *         <p/>
- *         To fully understand this class you must know its principles :
- *         - The PDF document is seen as if we always want to draw all the pages.
- *         - The thing is that we only draw the visible parts.
- *         - All parts are the same size, this is because we can't interrupt a native page rendering,
- *         so we need these renderings to be as fast as possible, and be able to interrupt them
- *         as soon as we can.
- *         - The parts are loaded when the current offset or the current zoom level changes
- *         <p/>
- *         Important :
- *         - DocumentPage = A page of the PDF document.
- *         - UserPage = A page as defined by the user.
- *         By default, they're the same. But the user can change the pages order
- *         using {@link #load(Uri, OnLoadCompleteListener, int[])}. In this
- *         particular case, a userPage of 5 can refer to a documentPage of 17.
- */
 public class PDFView extends SurfaceView {
 
     private static final String TAG = PDFView.class.getSimpleName();

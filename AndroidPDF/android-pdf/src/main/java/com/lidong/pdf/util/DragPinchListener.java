@@ -24,11 +24,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.os.Handler;
 /**
- * @author Joan Zapata
- *         <p/>
- *         This class manage MotionEvents. Use it on your view with
- *         setOnTouchListener(dragManager);
- *         <p/>
  *         Use {@link #setOnDragListener(OnDragListener)} and {@link #setOnPinchListener(OnPinchListener)}
  *         to receive events when a drag or pinch event occurs.
  */
