@@ -48,6 +48,6 @@ publish {
     artifactId = 'android_pdf'//项目名称
     publishVersion = '1.0.0'//版本号
     desc = 'this is a path android_pdf library.'//描述
-    website = 'https://github.com/lidong1665/android_pdf'//填写之前上传到github后的地址
+    website = 'https://github.com/lidong1665/AndroidPDF'//填写之前上传到github后的地址
 }
 
