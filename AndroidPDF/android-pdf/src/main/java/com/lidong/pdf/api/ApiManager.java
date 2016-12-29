@@ -9,7 +9,7 @@ import rx.Observable;
 public class ApiManager {
 
 
-    private static final String BASE_URL ="http://file.chmsp.com.cn/" ;
+    private static final String BASE_URL ="http://file/" ;
     private static final Retrofit sRetrofit = new Retrofit .Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

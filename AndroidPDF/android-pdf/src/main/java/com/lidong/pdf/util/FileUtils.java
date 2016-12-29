@@ -22,10 +22,14 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
-import com.lidong.pdf.PDFView;
 import com.lidong.pdf.api.ApiManager;
+import com.lidong.pdf.listener.OnFileListener;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
@@ -45,10 +49,10 @@ public class FileUtils {
     }
 
     /**
-     * http://file.chmsp.com.cn/colligate/file/00100000224821.pdf
+     * http://file.chmsp.com.cn/colligate/file/000000224821.pdf
      * @param fileUrl
      */
-    public static void  fileFromLocalStorage(String fileUrl, final String fileName, final FileListener listener)throws IOException{
+    public static void  fileFromLocalStorage(String fileUrl, final String fileName, final OnFileListener listener)throws IOException{
         final String SDPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/pdf/";
         final File file = new File(SDPath, fileName);
         if (file.exists()){//文件已经存在，直接获取本地文件打开，否则从网络现在文件，文件下载成功之后再打开
@@ -111,9 +115,6 @@ public class FileUtils {
         }
     }
 
-    public interface FileListener{
-        void setFile(File file);
-    }
 
 
     public static void copy(InputStream inputStream, File output) throws IOException {

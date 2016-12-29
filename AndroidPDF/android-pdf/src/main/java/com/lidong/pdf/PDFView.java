@@ -18,21 +18,23 @@
  */
 package com.lidong.pdf;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
-import android.graphics.*;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.SurfaceView;
 
-import com.lidong.pdf.api.ApiManager;
 import com.lidong.pdf.exception.FileNotFoundException;
 import com.lidong.pdf.listener.OnDrawListener;
+import com.lidong.pdf.listener.OnFileListener;
 import com.lidong.pdf.listener.OnLoadCompleteListener;
 import com.lidong.pdf.listener.OnPageChangeListener;
 import com.lidong.pdf.model.PagePart;
@@ -44,18 +46,8 @@ import com.lidong.pdf.util.NumberUtils;
 import org.vudroid.core.DecodeService;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
-import okhttp3.ResponseBody;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
-
-import static android.R.attr.format;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 import static com.lidong.pdf.util.Constants.Cache.CACHE_SIZE;
 
 
@@ -984,7 +976,7 @@ public class PDFView extends SurfaceView {
                                        final String fileName){
 
         try {
-            FileUtils.fileFromLocalStorage(fileUrl, fileName, new FileUtils.FileListener() {
+            FileUtils.fileFromLocalStorage(fileUrl, fileName, new OnFileListener() {
                 @Override
                 public void setFile(File file) {
                             new Configurator(Uri.fromFile(file)).defaultPage(1)         //设置默认显示第1页
@@ -1002,6 +994,51 @@ public class PDFView extends SurfaceView {
         }
     }
 
+
+    public  void  fileFromLocalStorage(final OnPageChangeListener onPageChangeListener,
+            final OnLoadCompleteListener onLoadCompleteListener,
+                                       String fileUrl,
+                                       final String fileName){
+
+        try {
+            FileUtils.fileFromLocalStorage(fileUrl, fileName, new OnFileListener() {
+                @Override
+                public void setFile(File file) {
+                    new Configurator(Uri.fromFile(file)).defaultPage(1)         //设置默认显示第1页
+                            .onLoad(onLoadCompleteListener)           //设置加载监听
+                            .onPageChange(onPageChangeListener)     //设置翻页监听
+                            .showMinimap(false)     //pdf放大的时候，是否在屏幕的右上角生成小地图
+                            .swipeVertical( false )  //pdf文档翻页是否是垂直翻页，默认是左右滑动翻页
+                            .enableSwipe(true)   //是否允许翻页，默认是允许翻
+                            .load();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public  void  fileFromLocalStorage(final OnLoadCompleteListener onLoadCompleteListener,
+                                       String fileUrl,
+                                       final String fileName){
+
+        try {
+            FileUtils.fileFromLocalStorage(fileUrl, fileName, new OnFileListener() {
+                @Override
+                public void setFile(File file) {
+                    new Configurator(Uri.fromFile(file)).defaultPage(1)         //设置默认显示第1页
+                            .onLoad(onLoadCompleteListener)           //设置加载监听
+                            .showMinimap(false)     //pdf放大的时候，是否在屏幕的右上角生成小地图
+                            .swipeVertical( false )  //pdf文档翻页是否是垂直翻页，默认是左右滑动翻页
+                            .enableSwipe(true)   //是否允许翻页，默认是允许翻
+                            .load();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /** Use a file as the pdf source */
     public Configurator fromFile(File file) {

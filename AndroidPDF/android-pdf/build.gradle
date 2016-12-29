@@ -13,7 +13,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 101
-        versionName "1.0.1"
+        versionName "1.0.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -55,7 +55,7 @@ publish {
     userOrg = 'lidong1665'//bintray.com用户名
     groupId = 'com.lidong.pdf'//jcenter上的路径,要保持与之前导入到bintary中的package名一致
     artifactId = 'android_pdf'//项目名称
-    publishVersion = '1.0.1'//版本号
+    publishVersion = '1.0.2'//版本号
     desc = 'this is a path android_pdf library.'//描述
     website = 'https://github.com/lidong1665/AndroidPDF'//填写之前上传到github后的地址
 }
