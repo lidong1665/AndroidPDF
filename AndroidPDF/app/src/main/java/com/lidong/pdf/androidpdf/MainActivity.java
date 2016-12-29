@@ -37,35 +37,6 @@ public class MainActivity extends AppCompatActivity implements OnPageChangeListe
 
     }
 
-    private void displayFromAssets(String assetFileName ) {
-        pdfView.fromAsset(assetFileName)   //设置pdf文件地址
-                .defaultPage(1)         //设置默认显示第1页
-                .onPageChange(this)     //设置翻页监听
-                .onLoad(this)           //设置加载监听
-                .onDraw(this)            //绘图监听
-                .showMinimap(false)     //pdf放大的时候，是否在屏幕的右上角生成小地图
-                .swipeVertical( false )  //pdf文档翻页是否是垂直翻页，默认是左右滑动翻页
-                .enableSwipe(true)   //是否允许翻页，默认是允许翻页
-//                 .pages()  //把2 , 3 , 4 , 5 过滤掉
-                .load();
-    }
-
-    /**
-     * 获取本地pdf文件
-     * @param file
-     */
-    private void displayFromFile( File file ) {
-        pdfView.fromFile(file)   //设置pdf文件地址
-                .defaultPage(1)         //设置默认显示第1页
-                .onPageChange(this)     //设置翻页监听
-                .onLoad(this)           //设置加载监听
-                .onDraw(this)            //绘图监听
-                .showMinimap(false)     //pdf放大的时候，是否在屏幕的右上角生成小地图
-                .swipeVertical( false )  //pdf文档翻页是否是垂直翻页，默认是左右滑动翻页
-                .enableSwipe(true)   //是否允许翻页，默认是允许翻
-                .load();
-    }
-
     /**
      * 获取打开网络的pdf文件
      * @param fileUrl

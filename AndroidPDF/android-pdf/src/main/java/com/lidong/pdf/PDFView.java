@@ -969,7 +969,14 @@ public class PDFView extends SurfaceView {
         }
     }
 
-
+    /**
+     *
+     * @param onPageChangeListener
+     * @param onLoadCompleteListener
+     * @param onDrawListener
+     * @param fileUrl
+     * @param fileName
+     */
     public  void  fileFromLocalStorage(final OnPageChangeListener onPageChangeListener,
                                        final OnLoadCompleteListener onLoadCompleteListener,
                                        final OnDrawListener onDrawListener,
